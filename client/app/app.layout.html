@@ -1,0 +1,19 @@
+<head>
+  <title>workflow-routing</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<template name="appLayout">
+  <header>
+    {{> yield region='header' }}
+  </header>
+  <aside>
+    {{> yield region='aside' }}
+  </aside>
+    {{> yield }}
+  <footer>
+    {{> yield region='footer' }}
+  </footer>
+</template>

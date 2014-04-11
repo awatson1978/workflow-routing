@@ -1,0 +1,54 @@
+<template name="homePage">
+
+  <div id="homePage" class="page">
+    <div class="content">
+      {{#with selectedCampaign }}
+        <div id="main-heading"></div>
+
+        <div id="pad-wrapper">
+            <!-- statistics chart built with jQuery Flot -->
+              <div class="row">
+                  <div class="col-md-12">
+                      <h2 class="clearfix pull-left">
+                          {{ name }} Campaign Overview
+                      </h2>
+                  </div>
+                <div class="col-md-12">
+                  <h4>{{ selectedCampaignId }}</h4>
+                </div>
+              </div>
+          <hr>
+
+          <div class="row">
+              <div class="col-md-4">
+                  <div class="panel panel-default">
+                      <div class="panel-heading"><h3><i class="icon-bar-chart"></i><span>Report Summary</span></h3>
+                          <div class="panel-body">
+                              <ul class="list-group">
+                              <li class="list-group-item"><span class="bold">Start Date:</span> {{ getStartDate }}</li>
+                              <li class="list-group-item"><span class="bold">End Date:</span> {{ getEndDate }}</li>
+                              <li class="list-group-item"><span class="bold">Total Interactions:</span> {{ getTotalInteractions }}</li>
+                              <li class="list-group-item"><span class="bold">Avg Interactions Per/Day:</span> {{ getAvgInteractionsPerDay }}</li>
+                              <li class="list-group-item"><span class="bold">Total Connections:</span> {{ getTotalConnections }}</li>
+                              <li class="list-group-item"><span class="bold">Total Conversions:</span> {{ getTotalConversions }}</li>
+                              <li class="list-group-item"><span class="bold">Unique Users:</span> {{ getUniqueUsers }}</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            <div class="col-md-8">
+              <div class="panel">
+                {{ _id }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      {{/with}}
+
+    </div>
+  </div>
+
+</template>
+
