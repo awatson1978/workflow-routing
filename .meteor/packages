@@ -11,3 +11,6 @@ less
 iron-router
 accounts-password
 browser-policy
+accounts-ui
+event-hooks
+browser-detection

@@ -14,7 +14,7 @@ Session.setDefault('currentPage', 'entrySignIn');
 
 setPageTitle = function(newTitle) {
   document.title = newTitle;
-}
+};
 checkUserSignedIn = function(scope){
   console.log('checkUserSignedIn');
   if(BrowserDetect.browser != "Chrome"){
@@ -58,19 +58,19 @@ Router.configure({
   layoutTemplate: 'appLayout',
   notFoundTemplate: 'notFoundPage'
 });
-Router.before(function() {
+Router.onBeforeAction(function() {
   if (! Meteor.loggingIn() && ! Meteor.user()) {
     this.redirect('/sign-in');
   }
-}, {except: 'entrySignInPage'});
+}, {except: ['introRoute', 'entrySignUpPageRoute', 'entrySignInPageRoute']});
 
 
 Router.map(function(){
- try{
+
    this.route('introRoute', {
      path: '/',
      template:"introPage",
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        console.log('routing to: /');
        checkUserSignedIn(this);
@@ -82,10 +82,10 @@ Router.map(function(){
      }
    });
 
-   this.route('introRoute', {
+   this.route('dashboardRoute', {
      path: '/dashboard',
      template:"introPage",
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        console.log('routing to: /dashboard');
        checkUserSignedIn(this);
@@ -99,7 +99,7 @@ Router.map(function(){
    this.route('eulaRoute', {
      path: '/eula',
      template: 'eulaPage',
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        checkUserSignedIn(this);
        Session.set('currentPage', 'eulaPage');
@@ -112,7 +112,7 @@ Router.map(function(){
    this.route('privacyRoute', {
      path: '/privacy',
      template: 'privacyPage',
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        checkUserSignedIn(this);
        Session.set('currentPage', 'privacyPage');
@@ -125,7 +125,7 @@ Router.map(function(){
    this.route('glossaryRoute', {
      path: '/glossary',
      template: 'glossaryPage',
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        checkUserSignedIn(this);
        Session.set('currentPage', 'glossaryPage');
@@ -140,7 +140,7 @@ Router.map(function(){
    this.route('contentsRoute', {
      path: '/contents',
      template: 'contentsPage',
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        checkUserSignedIn(this);
        Session.set('currentPage', 'contentsPage');
@@ -157,7 +157,7 @@ Router.map(function(){
    this.route('contentRoute', {
      path: '/content/:id',
      template: 'contentPage',
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        checkUserSignedIn(this);
        Session.set('currentPage', 'contentPage');
@@ -174,7 +174,7 @@ Router.map(function(){
    this.route('newContentRoute', {
      path: '/newcontent',
      template: 'newContentPage',
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        checkUserSignedIn(this);
        Session.set('currentPage', 'newContentPage');
@@ -193,7 +193,7 @@ Router.map(function(){
    this.route('interactionsRoute', {
      path: '/interactions',
      template: 'interactionsPage',
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        checkUserSignedIn(this);
        Session.set('currentPage', 'interactionsPage');
@@ -210,7 +210,7 @@ Router.map(function(){
    this.route('interactionRoute', {
      path: '/interaction/:id',
      template: 'interactionPage',
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        checkUserSignedIn(this);
        Session.set('currentPage', 'interactionPage');
@@ -228,7 +228,7 @@ Router.map(function(){
    this.route('visitorsRoute', {
      path: '/visitors',
      template: 'visitorsPage',
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        checkUserSignedIn(this);
        Session.set('currentPage', 'visitorsPage');
@@ -245,7 +245,7 @@ Router.map(function(){
    this.route('visitorRoute', {
      path: '/visitor/:id',
      template: 'visitorPage',
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        checkUserSignedIn(this);
        Session.set('currentPage', 'visitorPage');
@@ -266,7 +266,7 @@ Router.map(function(){
    this.route('statisticsRoute', {
      path: '/statistics',
      template: 'statisticsPage',
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        checkUserSignedIn(this);
        Session.set('currentPage', 'statisticsPage');
@@ -301,7 +301,7 @@ Router.map(function(){
    this.route('scatterChartRoute', {
      path: '/scatterchart',
      template: 'scatterChartPage',
-     yieldTemplates: areYieldsVisible(),
+     yieldTemplates: getYieldTemplates(),
      onBeforeAction: function(){
        checkUserSignedIn(this);
        Session.set('currentPage', 'scatterChartPage');
@@ -318,8 +318,4 @@ Router.map(function(){
    });
 
 
-
- }catch(message){
-   console.error(message);
- }
 });
