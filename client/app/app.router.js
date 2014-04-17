@@ -132,9 +132,7 @@ Router.map(function() {
     onBeforeAction: function() {
       Session.set('entryError', void 0);
       Meteor.logout();
-      Router.go('/');
-      Deps.flush();
-      return this.stop();
+      Router.go('/');      
     }
   });
   this.route('entryResetPassword', {
@@ -191,7 +189,6 @@ renderHomePage = function(scope){
     scope.render("navbarHeader", {to: 'header'});
     //scope.render("sidebarTemplate",{to: 'aside'});
   }
-  Meteor.flush();
 };
 
 
