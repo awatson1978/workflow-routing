@@ -1,16 +1,3 @@
-Router.map(function() {
-  this.route('entrySignUpPageRoute', {
-    path: '/sign-up',
-    template: 'entrySignUpPage'
-  });
-});
-Router.map(function() {
-  this.route('entrySignInPageRoute', {
-    path: '/sign-in',
-    template: 'entrySignInPage'
-  });
-});
-
 
 AccountsEntry = {
   settings: {

@@ -6,7 +6,6 @@ Meteor.startup(function(){
     removeWallpaper();
   };
   Hooks.onLoggedOut = function(userId){
-    setWallpaper();
   };
   Hooks.onCreateUser = function(userId){
 

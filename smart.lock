@@ -5,7 +5,8 @@
       "bootstrap-3": {},
       "iron-router": {},
       "event-hooks": {},
-      "browser-detection": {}
+      "browser-detection": {},
+      "auto-nprogress": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -28,10 +29,20 @@
         "tag": "v1.0.4",
         "commit": "127fc74221705bdbe40f0fd77f491bb1760aed95"
       },
+      "auto-nprogress": {
+        "git": "https://github.com/settinghead/meteor-auto-nprogress.git",
+        "tag": "v0.2.7",
+        "commit": "3fa87d5244e140cc5b49696585cd23b110c36467"
+      },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
         "tag": "v0.2.4",
         "commit": "b40e9b0612329288d75cf52ad14a7da64bb8618f"
+      },
+      "nprogress": {
+        "git": "https://github.com/zhouzhuojie/meteor-nprogress.git",
+        "tag": "v0.0.4",
+        "commit": "8333206b751a24fac1fbd1b03fa37621bcefe50c"
       }
     }
   }
