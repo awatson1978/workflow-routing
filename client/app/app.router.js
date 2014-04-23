@@ -1,10 +1,3 @@
-// layout = UI.render(Layout.extend({template: 'layout'});
-// UI.DomRange.insert(layout.dom, document.body);
-//
-// // render a template into a named region
-// layout.setRegion('footer', 'SomeFooterTemplate');
-
-
 
 
 //--------------------------------------------------------------
@@ -29,11 +22,13 @@ Router.onBeforeAction(function() {
     'glossaryRoute',
     'browserNotSupportedRoute',
     'pageNotFoundRoute',
-    'entrySignOut'
+    'entryForgotPasswordRoute',
+    'entrySignOutRoute',
+    'entryResetPasswordRoute'
   ]
 });
 Router.onBeforeAction(function() {
-  if((BrowserDetect.browser !== "Chrome") && (BrowserDetect.browser !== "Safari")){
+  if(!bowser.webkit){
     this.render('browserNotSupportedPage');
     this.pause();
   }
@@ -48,11 +43,9 @@ setPageTitle = function(newTitle) {
 };
 checkBrowserIsSupported = function(scope) {
   console.log('checkBrowserIsSupported');
-  if(BrowserDetect.browser !== "Chrome"){
-    scope.render('browserNotSupportedPage');
-    //scope.render("navbarHeader",{to: 'header'});
-    //scope.render("sidebarTemplate",{to: 'aside'});
-    scope.pause();
+  if(!bowser.webkit){
+    this.render('browserNotSupportedPage');
+    this.pause();
   }
 };
 
@@ -102,7 +95,6 @@ Router.map(function() {
     yieldTemplates: getYieldTemplates(),
     onBeforeAction: function() {
       Session.set('entryError', void 0);
-      checkBrowserIsSupported(this);
       setPageTitle("Sign Up");
     }
   });
@@ -112,35 +104,36 @@ Router.map(function() {
     yieldTemplates: getYieldTemplates(),
     onBeforeAction: function() {
       Session.set('entryError', void 0);
-      checkBrowserIsSupported(this);
       setPageTitle("Sign In");
     }
   });
 
-
-  this.route("entryForgotPassword", {
+  this.route("entryForgotPasswordRoute", {
     path: "/forgot-password",
+    template: "entryForgotPassword",
     yieldTemplates: getYieldTemplates(),
     onBeforeAction: function() {
       setPageTitle("Forgot Password");
-      checkBrowserIsSupported(this);
       return Session.set('entryError', void 0);
     }
   });
-  this.route('entrySignOut', {
+  this.route('entrySignOutRoute', {
     path: '/sign-out',
+    template: "entrySignOut",
+    yieldTemplates: getYieldTemplates(),
     onBeforeAction: function() {
       Session.set('entryError', void 0);
       Meteor.logout();
-      Router.go('/');      
+      Router.go('/');
     }
   });
-  this.route('entryResetPassword', {
+  this.route('entryResetPasswordRoute', {
     path: 'reset-password/:resetToken',
+    template: "entryResetPassword",
+    yieldTemplates: getYieldTemplates(),
     onBeforeAction: function() {
       Session.set('entryError', void 0);
       setPageTitle("Reset Password");
-      checkBrowserIsSupported(this);
       return Session.set('resetToken', this.params.resetToken);
     }
   });
@@ -183,11 +176,9 @@ renderHomePage = function(scope){
   if (Meteor.userId()) {
     scope.render("homePage");
     scope.render("navbarHeader", {to: 'header'});
-    //scope.render("sidebarTemplate",{to: 'aside'});
   }else{
     scope.render("landingPage");
     scope.render("navbarHeader", {to: 'header'});
-    //scope.render("sidebarTemplate",{to: 'aside'});
   }
 };
 
@@ -199,12 +190,6 @@ Router.map(function() {
     yieldTemplates: getYieldTemplates(),
     onBeforeAction: function() {
       console.log('routing to: /');
-      if(BrowserDetect.browser !== "Chrome"){
-        this.render('browserNotSupportedPage');
-        //this.render("navbarHeader",{to: 'header'});
-        //this.render("sidebarTemplate",{to: 'aside'});
-        this.pause();
-      }
     },
     onAfterAction: function(){
       renderHomePage(this);
@@ -218,7 +203,6 @@ Router.map(function() {
     yieldTemplates: getYieldTemplates(),
     onBeforeAction: function() {
       console.log('routing to: /dashboard');
-      checkBrowserIsSupported(this);
       setPageTitle("Welcome");
     }
   });
@@ -227,7 +211,6 @@ Router.map(function() {
     template: 'eulaPage',
     yieldTemplates: getYieldTemplates(),
     onBeforeAction: function() {
-      checkBrowserIsSupported(this);
       setPageTitle("End User License Agreement");
     }
   });
@@ -236,7 +219,6 @@ Router.map(function() {
     template: 'privacyPage',
     yieldTemplates: getYieldTemplates(),
     onBeforeAction: function() {
-      checkBrowserIsSupported(this);
       setPageTitle("Privacy Policy");
     }
   });
@@ -245,7 +227,6 @@ Router.map(function() {
     template: 'glossaryPage',
     yieldTemplates: getYieldTemplates(),
     onBeforeAction: function() {
-      checkBrowserIsSupported(this);
       setPageTitle("Glossary");
     }
   });
@@ -254,7 +235,6 @@ Router.map(function() {
     template: 'aboutPage',
     yieldTemplates: getYieldTemplates(),
     onBeforeAction: function() {
-      checkBrowserIsSupported(this);
       setPageTitle("About");
     }
   });

@@ -5,7 +5,6 @@
       "bootstrap-3": {},
       "iron-router": {},
       "event-hooks": {},
-      "browser-detection": {},
       "auto-nprogress": {}
     },
     "packages": {
@@ -23,11 +22,6 @@
         "git": "https://github.com/BenjaminRH/meteor-event-hooks.git",
         "tag": "v1.4.3",
         "commit": "ba4f3d7887748458618d29615492906f0c88d31c"
-      },
-      "browser-detection": {
-        "git": "https://github.com/awatson1978/browser-detection.git",
-        "tag": "v1.0.4",
-        "commit": "127fc74221705bdbe40f0fd77f491bb1760aed95"
       },
       "auto-nprogress": {
         "git": "https://github.com/settinghead/meteor-auto-nprogress.git",

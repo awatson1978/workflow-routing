@@ -3,7 +3,6 @@
     "bootstrap-3": {},
     "iron-router": {},
     "event-hooks": {},
-    "browser-detection": {},
     "auto-nprogress": {}
   }
 }
