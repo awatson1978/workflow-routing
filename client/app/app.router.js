@@ -44,8 +44,8 @@ setPageTitle = function(newTitle) {
 checkBrowserIsSupported = function(scope) {
   console.log('checkBrowserIsSupported');
   if(!bowser.webkit){
-    this.render('browserNotSupportedPage');
-    this.pause();
+    scope.render('browserNotSupportedPage');
+    scope.pause();
   }
 };
 

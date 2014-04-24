@@ -10,6 +10,9 @@ Meteor.startup(function(){
   $(window).resize(function(evt) {
     Session.set("resize", new Date());
   });
+
+  bowser = BrowserObserver.init();
+
 });
 setWallpaper = function(){
   console.log('setting wallpaper...');
