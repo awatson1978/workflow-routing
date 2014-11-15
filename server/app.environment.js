@@ -1,3 +1,5 @@
+
+
 Meteor.methods({
   getEnvironmentRoot: function(){
     console.log(process.env.ROOT_URL);

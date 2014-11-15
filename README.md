@@ -1,9 +1,9 @@
-workflow-routing
+##workflow-routing
 ================
 
 Default workflow routing for Meteor apps, including accounts-entry, static pages, and error pages.  
 
-
+=========================
 ####  Installation  
 
 ````sh
@@ -15,7 +15,8 @@ cd workflow-routing
 meteor
 ````
 
-Licensing
-------------------------
+=========================
+####Licensing  
+
 
 MIT License. Use as you wish.

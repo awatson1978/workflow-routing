@@ -5,11 +5,19 @@
 
 Router.configure({
   layoutTemplate: 'appLayout',
-  notFoundTemplate: 'notFoundPage'
+  notFoundTemplate: 'notFoundPage',
+  yieldTemplates: {
+    'navbarHeader': {
+      to: 'header'
+    }
+  }
 });
+
 Router.onBeforeAction(function() {
   if (!Meteor.loggingIn() && !Meteor.user()) {
     this.redirect('/sign-in');
+  }else{
+    this.next();
   }
 }, {
   except: [
@@ -30,17 +38,15 @@ Router.onBeforeAction(function() {
 Router.onBeforeAction(function() {
   if(!bowser.webkit){
     this.render('browserNotSupportedPage');
-    this.pause();
+  }else{
+    this.next();
   }
 });
-
 
 //--------------------------------------------------------------
 // Routing Helper Functions
 
-setPageTitle = function(newTitle) {
-  document.title = newTitle;
-};
+
 checkBrowserIsSupported = function(scope) {
   console.log('checkBrowserIsSupported');
   if(!bowser.webkit){
@@ -57,33 +63,17 @@ checkUserHasEmployer = function(scope) {
 
       scope.render("navbarHeader", {to: 'header'});
       //scope.render("sidebarTemplate",{to: 'aside'});
-      scope.pause();
+      scope.next();
     } else {
       scope.render("navbarHeader", {to: 'header'});
       //scope.render("sidebarTemplate",{to: 'aside'});
-      scope.pause();
+      scope.next();
     }
+  }else{
+    scope.next();
   }
 };
 
-getYieldTemplates = function() {
-  if (Meteor.userId()) {
-    return {
-      'navbarHeader': {
-        to: 'header'
-      }
-      //'sidebarTemplate': {to: 'aside'}
-    };
-  } else {
-    return {
-      'navbarHeader': {
-        to: 'header'
-      }
-      //'sidebarTemplate': {to: 'aside'}
-    };
-    //return {};
-  }
-};
 
 //--------------------------------------------------------------
 // Accounts Entry Routes
@@ -92,35 +82,31 @@ Router.map(function() {
   this.route("entrySignUpRoute", {
     path: "/sign-up",
     template: "entrySignUpPage",
-    yieldTemplates: getYieldTemplates(),
-    onBeforeAction: function() {
+    onAfterAction: function(){
       Session.set('entryError', void 0);
-      setPageTitle("Sign Up");
+      document.title = "Sign Up";
     }
   });
   this.route("entrySignInRoute", {
     path: "/sign-in",
     template: "entrySignInPage",
-    yieldTemplates: getYieldTemplates(),
-    onBeforeAction: function() {
+    onAfterAction: function(){
       Session.set('entryError', void 0);
-      setPageTitle("Sign In");
+      document.title = "Sign In";
     }
   });
 
   this.route("entryForgotPasswordRoute", {
     path: "/forgot-password",
     template: "entryForgotPassword",
-    yieldTemplates: getYieldTemplates(),
-    onBeforeAction: function() {
-      setPageTitle("Forgot Password");
-      return Session.set('entryError', void 0);
+    onAfterAction: function(){
+      document.title = "Forgot Password";
+      Session.set('entryError', void 0);
     }
   });
   this.route('entrySignOutRoute', {
     path: '/sign-out',
     template: "entrySignOut",
-    yieldTemplates: getYieldTemplates(),
     onBeforeAction: function() {
       Session.set('entryError', void 0);
       Meteor.logout();
@@ -130,11 +116,14 @@ Router.map(function() {
   this.route('entryResetPasswordRoute', {
     path: 'reset-password/:resetToken',
     template: "entryResetPassword",
-    yieldTemplates: getYieldTemplates(),
     onBeforeAction: function() {
       Session.set('entryError', void 0);
-      setPageTitle("Reset Password");
-      return Session.set('resetToken', this.params.resetToken);
+      Session.set('resetToken', this.params.resetToken);
+      this.next();
+    },
+    onAfterAction: function(){
+      document.title = "Reset Password";
+      Session.set('entryError', void 0);
     }
   });
 });
@@ -147,19 +136,17 @@ Router.map(function() {
   this.route("browserNotSupportedRoute", {
     path: "/notsupported",
     template: "browserNotSupportedPage",
-    yieldTemplates: getYieldTemplates(),
-    onBeforeAction: function() {
+    onAfterAction: function(){
+      document.title = "Browser Not Supported";
       Session.set('entryError', void 0);
-      setPageTitle("Browser Not Supported");
     }
   });
   this.route("pageNotFoundRoute", {
     path: "/notfound",
     template: "notFoundPage",
-    yieldTemplates: getYieldTemplates(),
-    onBeforeAction: function() {
+    onAfterAction: function(){
+      document.title = "Not Found Page";
       Session.set('entryError', void 0);
-      setPageTitle("Not Found Page");
     }
   });
 
@@ -187,55 +174,44 @@ Router.map(function() {
 
   this.route('landingRoute', {
     path: '/',
-    yieldTemplates: getYieldTemplates(),
-    onBeforeAction: function() {
-      console.log('routing to: /');
-    },
-    onAfterAction: function(){
+    action: function(){
       renderHomePage(this);
-      setPageTitle("Landing Page");
     }
   });
 
   this.route('dashboardRoute', {
     path: '/dashboard',
     template: "homePage",
-    yieldTemplates: getYieldTemplates(),
-    onBeforeAction: function() {
-      console.log('routing to: /dashboard');
-      setPageTitle("Welcome");
+    onAfterAction: function(){
+      document.title = "Dashboard";
     }
   });
   this.route('eulaRoute', {
     path: '/eula',
     template: 'eulaPage',
-    yieldTemplates: getYieldTemplates(),
-    onBeforeAction: function() {
-      setPageTitle("End User License Agreement");
+    onAfterAction: function(){
+      document.title = "End User License Agreement";
     }
   });
   this.route('privacyRoute', {
     path: '/privacy',
     template: 'privacyPage',
-    yieldTemplates: getYieldTemplates(),
-    onBeforeAction: function() {
-      setPageTitle("Privacy Policy");
+    onAfterAction: function(){
+      document.title = "Privacy Policy";
     }
   });
   this.route('glossaryRoute', {
     path: '/glossary',
     template: 'glossaryPage',
-    yieldTemplates: getYieldTemplates(),
-    onBeforeAction: function() {
-      setPageTitle("Glossary");
+    onAfterAction: function(){
+      document.title = "Glossary";
     }
   });
   this.route('aboutRoute', {
     path: '/about',
     template: 'aboutPage',
-    yieldTemplates: getYieldTemplates(),
-    onBeforeAction: function() {
-      setPageTitle("About");
+    onAfterAction: function(){
+      document.title = "About";
     }
   });
 
