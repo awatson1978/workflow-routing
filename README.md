@@ -1,5 +1,4 @@
 ##workflow-routing
-================
 
 Default workflow routing for Meteor apps, including accounts-entry, static pages, and error pages.  
 
