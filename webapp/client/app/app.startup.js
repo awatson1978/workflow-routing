@@ -27,21 +27,17 @@ removeWallpaper = function(){
 
 
 Meteor.startup(function(){
-  // replace getEnvironment
+
   Meteor.call('getEnvironmentRoot', function(error, result){
     if(error){
       console.log(error);
     }
     if(result){
       console.log('current environment url:  ' + result);
-      if(result === "http://insights.thinaire.net"){
-        // load production config
-        //Session.setDefault('apiAddressAndPort', Meteor.settings.production.apiAddress);
-        Session.setDefault('apiAddressAndPort', 'http://api.thinaire.net');
+      if(result === "http://localhost:3000"){
+        // do local development stuff
       }else{
-        // load dev config
-        //Session.setDefault('apiAddressAndPort', Meteor.settings.development.apiAddress);
-        Session.setDefault('apiAddressAndPort', 'http://tadev01:8889');
+        // do production stuff
       }
 
     }

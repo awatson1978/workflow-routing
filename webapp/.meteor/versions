@@ -14,6 +14,7 @@ blaze@2.0.3
 boilerplate-generator@1.0.1
 callback-hook@1.0.1
 check@1.0.2
+clinical:nightwatch@1.5.1
 ctl-helper@1.0.4
 ctl@1.0.2
 ddp@1.0.11
@@ -49,8 +50,10 @@ minifiers@1.1.2
 minimongo@1.0.5
 mobile-status-bar@1.0.1
 mongo@1.0.8
-mrt:bootstrap-3@0.3.8
 mrt:nprogress@0.1.0
+natestrauser:font-awesome@4.3.0
+nemo64:bootstrap-data@3.3.1_1
+nemo64:bootstrap@3.3.1_1
 npm-bcrypt@0.7.7
 observe-sequence@1.0.3
 ordered-dict@1.0.1

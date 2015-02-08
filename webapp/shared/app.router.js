@@ -9,6 +9,9 @@ Router.configure({
   yieldTemplates: {
     'navbarHeader': {
       to: 'header'
+    },
+    'navbarFooter': {
+      to: 'footer'
     }
   }
 });
@@ -35,12 +38,16 @@ Router.onBeforeAction(function() {
     'entryResetPasswordRoute'
   ]
 });
+
 Router.onBeforeAction(function() {
-  if(!bowser.webkit){
-    this.render('browserNotSupportedPage');
-  }else{
-    this.next();
-  }
+  this.next();
+
+  // some hacky webkit detection stuff
+  // if(!bowser.webkit){
+  //   this.render('browserNotSupportedPage');
+  // }else{
+  //   this.next();
+  // }
 });
 
 //--------------------------------------------------------------
@@ -62,10 +69,12 @@ checkUserHasEmployer = function(scope) {
       scope.render("noEmployerSetPageErrorPage");
 
       scope.render("navbarHeader", {to: 'header'});
+      scope.render("navbarFooter", {to: 'footer'});
       //scope.render("sidebarTemplate",{to: 'aside'});
       scope.next();
     } else {
       scope.render("navbarHeader", {to: 'header'});
+      scope.render("navbarFooter", {to: 'footer'});
       //scope.render("sidebarTemplate",{to: 'aside'});
       scope.next();
     }
@@ -163,9 +172,11 @@ renderHomePage = function(scope){
   if (Meteor.userId()) {
     scope.render("homePage");
     scope.render("navbarHeader", {to: 'header'});
+    scope.render("navbarFooter", {to: 'footer'});
   }else{
     scope.render("landingPage");
     scope.render("navbarHeader", {to: 'header'});
+    scope.render("navbarFooter", {to: 'footer'});
   }
 };
 

@@ -11,15 +11,17 @@ Template.navbarHeader.events({
 // ---------------------------------------------------------------
 // template helpers
 
-Template.navbarHeader.getUserName = function(){
-  if(Meteor.userId()){
-    if(Meteor.user()){
-      //return Meteor.user().emails[0].address;
-      return Meteor.user().username;
+Template.navbarHeader.helpers({
+  getUserName: function(){
+    if(Meteor.userId()){
+      if(Meteor.user()){
+        //return Meteor.user().emails[0].address;
+        return Meteor.user().username;
+      }else{
+        return "---";
+      }
     }else{
-      return "---";
+      return "Sign In";
     }
-  }else{
-    return "Sign In";
   }
-};
+});

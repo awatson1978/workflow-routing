@@ -4,60 +4,62 @@
 
 
 <template name="navbarHeader">
-  <nav id="navbarHeader" class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Site Name</a>
-    </div>
+  <div id="navbarHeader">
+      <nav id="navbarHeaderNav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Site Name</a>
+          </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account Flow <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="/sign-in">Sign-In</a></li>
-            <li><a href="/sign-up">Sign-Up</a></li>
-            <li><a href="/forgot-password">Forgot Password</a></li>
-            <li><a href="/reset-password/2198347">Reset Password</a></li>
-            <li class="divider"></li>
-            <li><a href="/sign-out">Sign-Out</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Errors <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="/notsupported">Browser Not Supported</a></li>
-            <li><a href="/notfound">Page Not Found</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile Menu <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="/eula">End User License</a></li>
-            <li><a href="/privacy">Privacy Page</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/glossary">Glossary</a></li>
-            {{#if isLoggedIn }}
-            <li class="divider"></li>
-            <li><a href="/sign-out">Sign-Out</a></li>
-            {{/if}}
-          </ul>
-        </li>
-        <li><a href="http://github.com/awatson1978/workflow-routing">Get the code.</a></li>
-      </ul>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account Flow <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/sign-in">Sign-In</a></li>
+                  <li><a href="/sign-up">Sign-Up</a></li>
+                  <li><a href="/forgot-password">Forgot Password</a></li>
+                  <li><a href="/reset-password/2198347">Reset Password</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/sign-out">Sign-Out</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Errors <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/notsupported">Browser Not Supported</a></li>
+                  <li><a href="/notfound">Page Not Found</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile Menu <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/eula">End User License</a></li>
+                  <li><a href="/privacy">Privacy Page</a></li>
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/glossary">Glossary</a></li>
+                  {{#if isLoggedIn }}
+                  <li class="divider"></li>
+                  <li><a href="/sign-out">Sign-Out</a></li>
+                  {{/if}}
+                </ul>
+              </li>
+              <li><a href="http://github.com/awatson1978/workflow-routing">Get the code.</a></li>
+            </ul>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/sign-in">{{getUserName}}</a></li>
-      </ul>
-    </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/sign-in">{{getUserName}}</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
   </div>
-</nav>
 </template>

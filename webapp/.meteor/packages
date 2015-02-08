@@ -13,9 +13,10 @@ email
 
 nemo64:bootstrap
 natestrauser:font-awesome
+
 iron:router
 benjaminrh:event-hooks
 mrt:nprogress
 awatson1978:bowser
 
-clinical:meteor
+clinical:nightwatch

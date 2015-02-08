@@ -6,16 +6,18 @@
 
 
 <template name="mainLayout">
-  <header>
-    {{> yield region='header' }}
-  </header>
-  <aside>
-    {{> yield region='aside' }}
-  </aside>
-  <main>
-    {{> yield }}
-  </main>
-  <footer>
-    {{> yield region='footer' }}
-  </footer>
+  <div id="mainLayout">
+    <header>
+      {{> yield region='header' }}
+    </header>
+    <aside>
+      {{> yield region='aside' }}
+    </aside>
+    <main id="mainPanel">
+      {{> yield }}
+    </main>
+    <footer>
+      {{> yield region='footer' }}
+    </footer>
+  </div>
 </template>
