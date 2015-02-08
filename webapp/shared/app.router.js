@@ -4,7 +4,7 @@
 // Global Configuration
 
 Router.configure({
-  layoutTemplate: 'appLayout',
+  layoutTemplate: 'mainLayout',
   notFoundTemplate: 'notFoundPage',
   yieldTemplates: {
     'navbarHeader': {

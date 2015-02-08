@@ -1,9 +1,0 @@
-{
-  "packages": {
-    "bootstrap-3": {},
-    "iron-router": {},
-    "event-hooks": {},
-    "auto-nprogress": {},
-    "bowser": {}
-  }
-}
