@@ -2,6 +2,8 @@
 
 Default workflow routing for Meteor apps, including accounts-entry, static pages, and error pages.  
 
+![travis-build](https://travis-ci.org/awatson1978/workflow-routing.svg?branch=master)  
+
 =========================
 ####  Installation  
 
